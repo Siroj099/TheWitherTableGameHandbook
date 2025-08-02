@@ -1,26 +1,51 @@
-// Dynamic variable that should be retrieved from back-enf (for now hardcoded), there will be navbar options
-const navItems = [
-  {
-    title: "Characters",
-    links: ["Races", "Professions", "Lifepaths", "Skills"],
-  },
-  {
-    title: "Bestiary",
-    links: ["Monsters", "Beasts", "Cursed Ones"],
-  },
-  {
-    title: "Equipment",
-    links: ["Weapons", "Armor", "Alchemical Items"],
-  },
-  {
-    title: "Magic",
-    links: ["Spells", "Signs", "Invocations", "Rituals"],
-  },
-  {
-    title: "World",
-    links: ["Regions", "History", "Factions"],
-  },
-];
+// Dynamic variable that should be retrieved from back-end (for now hardcoded), there will be navbar options
+class navItemsMainPage {
+  constructor(navItemsTitle, navItemsLinks) {
+    this.title = navItemsTitle;
+    this.links = navItemsLinks;
+  }
+
+  getAllNavItems(...navItems) {
+    return navItems;
+  }
+}
+
+// Creation of items for navBar (for now, in future I will retrieve everything from database)
+let firstNavItem = new navItemsMainPage("Characters", [
+  "Races",
+  "Professions",
+  "Lifepaths",
+  "Skills",
+]);
+let secondNavItem = new navItemsMainPage("Bestiary", [
+  "Monsters",
+  "Beasts",
+  "Cursed Ones",
+]);
+let thirdNavItem = new navItemsMainPage("Equipment", [
+  "Weapons",
+  "Armor",
+  "Alchemical Items",
+]);
+let fourthNavItem = new navItemsMainPage("Magic", [
+  "Spells",
+  "Signs",
+  "Invocations",
+  "Rituals",
+]);
+let fifthNavItem = new navItemsMainPage("World", [
+  "Regions",
+  "History",
+  "Factions",
+]);
+
+const fullNavItemsList = new navItemsMainPage().getAllNavItems(
+  firstNavItem,
+  secondNavItem,
+  thirdNavItem,
+  fourthNavItem,
+  fifthNavItem
+);
 
 // Dynamic variable created for showing most popular web pages (cards in main menu)
 const featuredPages = [
@@ -47,7 +72,7 @@ const featuredPages = [
 // Getting the main container (could be devided in future into modules (if there will be new features))
 const appContainer = document.getElementById("app");
 
-// Dynamic HTML generation done by javascript 
+// Dynamic HTML generation done by javascript
 
 function renderApp() {
   // clearing container
@@ -65,13 +90,13 @@ function renderApp() {
   navBar.className = "flex justify-center flex-wrap gap-8 mb-12";
 
   // Loop through items in navItems and render all groups with items to show in main menu
-  navItems.forEach((item) => {
+  fullNavItemsList.forEach((item) => {
     const dropdownDiv = document.createElement("div");
     dropdownDiv.className = "dropdown relative inline-block px-4";
 
     const button = document.createElement("button");
     button.className =
-      "bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded-lg transition duration-300 ease-in-out";    
+      "bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded-lg transition duration-300 ease-in-out";
     button.textContent = item.title;
 
     const dropdownContent = document.createElement("div");
