@@ -47,36 +47,30 @@ const fullNavItemsList = new NavBarItemsMainPage().getAllNavItems(
   fifthNavItem
 );
 
-const navBarContainer = document.getElementById("navbar")
+const navBarContainer = document.getElementById("navbar");
+const navBarTemplate = document.getElementById("nav-dropdown-template");
 
 function renderNavBar() {
-    // clearing container
+  // clearing container
   navBarContainer.innerHTML = "";
 
-  // Main title
-  const mainTitle = document.createElement("h1");
-  mainTitle.className =
-    "text-5xl md:text-6xl font-witcher text-center text-yellow-300 mb-8";
-  mainTitle.textContent = "The Witcher Handbook";
-  navBarContainer.appendChild(mainTitle);
-
-  // Navigation bar
+  // Navigation bar container
   const navBar = document.createElement("nav");
   navBar.className = "flex justify-center flex-wrap gap-8 mb-12";
 
   // Loop through items in navItems and render all groups with items to show in main menu
   fullNavItemsList.forEach((item) => {
-    const dropdownDiv = document.createElement("div");
-    dropdownDiv.className = "dropdown relative inline-block px-4";
+    // cloning template
+    const dropdownDiv =
+      navBarTemplate.content.cloneNode(true).firstElementChild;
 
-    const button = document.createElement("button");
-    button.className =
-      "bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded-lg transition duration-300 ease-in-out";
+    // getting elements inside of template and update content inside of it
+    const button = dropdownDiv.querySelector("button");
     button.textContent = item.title;
 
-    const dropdownContent = document.createElement("div");
-    dropdownContent.className = "dropdown-content py-2";
-    // Loop through items inside of group item and render it for dropdown
+    const dropdownContent = dropdownDiv.querySelector(".dropdown-content");
+
+    // populate content of items inside of dropdown
     item.links.forEach((linkText) => {
       const link = document.createElement("a");
       link.href = "#"; // Placeholder link
@@ -86,8 +80,6 @@ function renderNavBar() {
       dropdownContent.appendChild(link);
     });
 
-    dropdownDiv.appendChild(button);
-    dropdownDiv.appendChild(dropdownContent);
     navBar.appendChild(dropdownDiv);
   });
 
@@ -97,7 +89,7 @@ function renderNavBar() {
 // EVENT LISTENERS
 function setupEventListeners() {
   // This makes dropdowns work on click for touch devices
-  document.querySelectorAll(".dropdown button").forEach((button) => {
+  document.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", (event) => {
       // Prevent the click from bubbling up to the window
       event.stopPropagation();
@@ -122,6 +114,17 @@ function setupEventListeners() {
   window.addEventListener("click", () => {
     document.querySelectorAll(".dropdown.active").forEach((dropdown) => {
       dropdown.classList.remove("active");
+    });
+  });
+  document.querySelectorAll(".dropdown").forEach((dropdown) => {
+    // Add hovered class when the mouse enters the dropdown area
+    dropdown.addEventListener("mouseenter", () => {
+      dropdown.classList.add("hovered");
+    });
+
+    // Remove hovered class when the mouse leaves the dropdown area
+    dropdown.addEventListener("mouseleave", () => {
+      dropdown.classList.remove("hovered");
     });
   });
 }
