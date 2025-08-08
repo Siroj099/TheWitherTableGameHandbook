@@ -1,48 +1,4 @@
-// Class to dynamically retrieve data for cards
-class GroupCards {
-  constructor(cardTitle, cardDescription, cardLink, cardImageURL) {
-    this.title = cardTitle;
-    this.description = cardDescription;
-    this.link = cardLink;
-    this.imageURL = cardImageURL;
-  }
-  getAllCardItems(...cardItems) {
-    return cardItems;
-  }
-}
-
-// Created static variables for now
-let firstCard = new GroupCards(
-  "Люди",
-  "Доминирующая раса.",
-  "#",
-  "../images/bg-humans.webp"
-);
-let secondCard = new GroupCards(
-  "Гномы",
-  "Низкорослые.",
-  "#",
-  "../images/bg-dwarfs.webp"
-);
-let thirdCard = new GroupCards(
-  "Низушки",
-  "Очень редкая раса, которую почти истребили.",
-  "#",
-  "../images/bg-nizushki.webp"
-);
-let fourthCard = new GroupCards(
-  "Эльфы",
-  "Старейшая раса жившая на этих землях, до прихода людей являлись владельцами обширных территорий, но из за сложной долголетия и сложной репродуктивной системы стали избегать людей и большинство ушло на восток.",
-  "#",
-  "../images/bg-elfs.webp"
-);
-
-let fullGroupCards = new GroupCards().getAllCardItems(
-  firstCard,
-  secondCard,
-  thirdCard,
-  fourthCard
-);
+import { fullGroupCards } from "./data.js"
 
 const featuredGrid = document.getElementById("featured-grid");
 const groupCardTemplate = document.getElementById("card-template");
