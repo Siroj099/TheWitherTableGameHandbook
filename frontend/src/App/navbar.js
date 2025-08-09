@@ -3,7 +3,7 @@ import { fullNavItemsList } from "./data.js";
 const navBarContainer = document.getElementById("navbar");
 const navBarTemplate = document.getElementById("nav-dropdown-template");
 
-function renderNavBar() {
+export function renderNavBar() {
   // clearing container
   navBarContainer.innerHTML = "";
 
@@ -40,7 +40,7 @@ function renderNavBar() {
 }
 
 // EVENT LISTENERS
-function setupEventListeners() {
+export function setupEventListeners() {
   // This makes dropdowns work on click for touch devices
   document.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -81,10 +81,3 @@ function setupEventListeners() {
     });
   });
 }
-
-// INITIALIZATION
-// This runs when the page loads
-document.addEventListener("DOMContentLoaded", () => {
-  renderNavBar();
-  setupEventListeners();
-});

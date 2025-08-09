@@ -1,4 +1,6 @@
 import { fullMainMenuCards } from "./data.js";
+import { renderNavBar } from "./navbar.js";
+import { setupEventListeners } from "./navbar.js";
 
 // Getting the main container (could be devided in future into modules (if there will be new features))
 const appContainer = document.getElementById("main-page");
@@ -50,5 +52,7 @@ function renderMainPage() {
 // INITIALIZATION
 // This runs when the page loads
 document.addEventListener("DOMContentLoaded", () => {
+  renderNavBar();
+  setupEventListeners();
   renderMainPage();
 });

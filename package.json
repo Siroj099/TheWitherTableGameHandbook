@@ -1,0 +1,19 @@
+{
+  "name": "thewitchertablegamehandbook",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:front": "cd frontend && npm run dev",
+    "dev:back": "cd backend && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Siroj099/TheWitherTableGameHandbook.git"
+  },
+  "author": "Skiller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Siroj099/TheWitherTableGameHandbook/issues"
+  },
+  "homepage": "https://github.com/Siroj099/TheWitherTableGameHandbook#readme"
+}

@@ -1,4 +1,6 @@
-import { fullGroupCards } from "./data.js"
+import { fullGroupCards } from "./data.js";
+import { renderNavBar } from "./navbar.js";
+import { setupEventListeners } from "./navbar.js";
 
 const featuredGrid = document.getElementById("featured-grid");
 const groupCardTemplate = document.getElementById("card-template");
@@ -10,7 +12,7 @@ function renderGroupPage() {
   fullGroupCards.forEach((page) => {
     // Clone the template content for each card
     const cardClone = groupCardTemplate.content.cloneNode(true);
-    
+
     // Get the card and its inner elements within the cloned content
     const cardDiv = cardClone.querySelector(".aspect-\\[1\\.5\\]");
     const cardTitle = cardClone.querySelector("h3");
@@ -36,6 +38,8 @@ function renderGroupPage() {
 // INITIALIZATION
 // This runs when the page loads
 document.addEventListener("DOMContentLoaded", () => {
+  renderNavBar();
+  setupEventListeners();
   renderGroupPage();
   //   setupEventListeners();
 });
